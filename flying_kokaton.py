@@ -44,8 +44,7 @@ def main():
             mvx = -1
         if key_lst[pg.K_RIGHT]:
             mvx = +2
-        img_rct.move_ip(mvx, mvy)
-        img_rct.move_ip(-1,0)
+        img_rct.move_ip(mvx-1, mvy)
         
         screen.blit(pn_img, img_rct)
         pg.display.update()
