@@ -16,6 +16,8 @@ def main():
     img_rct = pn_img.get_rect()
     img_rct.center = 300, 200
     tmr = 0
+    mvx = 0
+    mvy = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
@@ -26,19 +28,30 @@ def main():
         screen.blit(bgg_img, [-x+4800, 0])
         key_lst = pg.key.get_pressed()
         key_lst = pg.key.get_pressed()  # 全キーの押下状態を取得
-        if key_lst[pg.K_UP]:  # 上矢印キーが押されたら
-            img_rct.move_ip(0, -1)
-        if key_lst[pg.K_DOWN]:  # 下矢印キーが押されたら
-            img_rct.move_ip(0, +1)
-        if key_lst[pg.K_LEFT]:  # 左矢印キーが押されたら
-            img_rct.move_ip(-1, 0)
-        if key_lst[pg.K_RIGHT]:  # 右矢印キーが押されたら
-            img_rct.move_ip(+2, 0)
+        # if key_lst[pg.K_UP]:  # 上矢印キーが押されたら
+        #     img_rct.move_ip(0, -1)
+        # if key_lst[pg.K_DOWN]:  # 下矢印キーが押されたら
+        #     img_rct.move_ip(0, +1)
+        # if key_lst[pg.K_LEFT]:  # 左矢印キーが押されたら
+        #     img_rct.move_ip(-1, 0)
+        # if key_lst[pg.K_RIGHT]:  # 右矢印キーが押されたら
+        #     img_rct.move_ip(+2, 0)
+        if key_lst[pg.K_UP]:
+            mvy = -1
+        if key_lst[pg.K_DOWN]:
+            mvy = +1
+        if key_lst[pg.K_LEFT]:
+            mvx = -1
+        if key_lst[pg.K_RIGHT]:
+            mvx = +2
+        img_rct.move_ip(mvx, mvy)
         img_rct.move_ip(-1,0)
         
         screen.blit(pn_img, img_rct)
         pg.display.update()
         tmr += 1 
+        mvx = 0
+        mvy = 0
         clock.tick(200)
 
 
