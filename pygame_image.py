@@ -33,7 +33,8 @@ def main():
         if key_lst[pg.K_LEFT]:  # 左矢印キーが押されたら
             img_rct.move_ip(-1, 0)
         if key_lst[pg.K_RIGHT]:  # 右矢印キーが押されたら
-            img_rct.move_ip(+1, 0)
+            img_rct.move_ip(+2, 0)
+        img_rct.move_ip(-1,0)
         
         screen.blit(pn_img, img_rct)
         pg.display.update()
