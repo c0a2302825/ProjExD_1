@@ -13,22 +13,29 @@ def main():
     pn_img = pg.image.load("fig/3.png")
     bgg_img = pg.transform.flip(bg_img, True, False)
     pn_img = pg.transform.flip(pn_img, True, False)
-    # img_rct = pn_img.get_rect()
-    # img_rct.center = 300, 200
+    img_rct = pn_img.get_rect()
+    img_rct.center = 300, 200
     tmr = 0
     while True:
         for event in pg.event.get():
             if event.type == pg.QUIT: return
-        x = tmr%800
         x = tmr%3200
         screen.blit(bg_img, [-x, 0])
         screen.blit(bgg_img, [-x+1600,0])
         screen.blit(bg_img, [-x+3200, 0])
         screen.blit(bgg_img, [-x+4800, 0])
-        # screen.blit(pn_img, [0, 0])
-        img_rect = pn_img.get_rect()
-        img_rect.center = 300, 200
-        screen.blit(pn_img, img_rect)
+        key_lst = pg.key.get_pressed()
+        key_lst = pg.key.get_pressed()  # 全キーの押下状態を取得
+        if key_lst[pg.K_UP]:  # 上矢印キーが押されたら
+            img_rct.move_ip(0, -1)
+        if key_lst[pg.K_DOWN]:  # 下矢印キーが押されたら
+            img_rct.move_ip(0, +1)
+        if key_lst[pg.K_LEFT]:  # 左矢印キーが押されたら
+            img_rct.move_ip(-1, 0)
+        if key_lst[pg.K_RIGHT]:  # 右矢印キーが押されたら
+            img_rct.move_ip(+1, 0)
+        
+        screen.blit(pn_img, img_rct)
         pg.display.update()
         tmr += 1 
         clock.tick(200)
